@@ -13,9 +13,9 @@ function onStartBtnClick() {
   if (btnStatus) {
     console.log('start');
     btnStatus = false;
-    intervalId = setInterval(() => {
+    return (intervalId = setInterval(() => {
       refs.body.style.backgroundColor = `${getRandomHexColor()}`;
-    }, 1000);
+    }, 1000));
   }
 }
 
