@@ -8,14 +8,14 @@ refs.startBtn.addEventListener('click', onStartBtnClick);
 refs.stopBtn.addEventListener('click', onStopBtnClick);
 
 let btnStatus = true;
-let intervalId = null;
+let intervalId;
 function onStartBtnClick() {
   if (btnStatus) {
     console.log('start');
     btnStatus = false;
     intervalId = setInterval(() => {
       refs.body.style.backgroundColor = `${getRandomHexColor()}`;
-    }, 1000));
+    }, 1000);
   }
 }
 
