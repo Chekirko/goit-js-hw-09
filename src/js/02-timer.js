@@ -14,6 +14,7 @@ let currentTime = new Date();
 console.log(currentTime.getTime());
 
 refs.btn.setAttribute('disabled', true);
+let yourDate;
 
 const options = {
   enableTime: true,
