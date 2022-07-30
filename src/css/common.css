@@ -16,3 +16,35 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.timer {
+  display: flex;
+  margin-top: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+    
+}
+.field:not(:last-child) {
+  margin-right: 20px;
+}
+
+.value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 60px;
+  border: 1px solid black;
+  font-family: Oxygen-Sans;
+    font-weight: 500;
+      font-size: 50px;
+  text-align: center;
+}
+
+.label {
+  font-family: Oxygen-Sans;
+  text-align: center;
+}

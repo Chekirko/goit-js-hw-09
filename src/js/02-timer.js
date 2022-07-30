@@ -1,5 +1,6 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+import Notiflix from 'notiflix';
 
 const refs = {
   btn: document.querySelector('button[data-start]'),
@@ -21,10 +22,10 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0].getTime() <= currentTime.getTime()) {
-      alert('error');
+      Notiflix.Notify.warning('Please choose a date in the future');
     } else {
       refs.btn.removeAttribute('disabled');
-      return (deltaTime = selectedDates[0].getTime() - currentTime.getTime());
+      return (yourDate = selectedDates[0].getTime());
     }
   },
 };
@@ -33,18 +34,26 @@ flatpickr('#datetime-picker', options);
 
 refs.btn.addEventListener('click', onBtnClick);
 
-function onBtnClick(evt) {
-  console.log(deltaTime);
-  console.log(convertMs(deltaTime));
-  const totalTime = convertMs(deltaTime);
-  timer({ totalTime });
+function addLeadingZero(value) {
+  return String(value).padStart(2, '0');
 }
 
-const timer = function (obj) {
-  setInterval(obj => {
-    refs.days.textContent = obj.days;
+function onBtnClick(evt) {
+  refs.btn.setAttribute('disabled', true);
+  setInterval(() => {
+    const currentTime = Date.now();
+    const deltaTime = yourDate - currentTime;
+    if (deltaTime <= 0) {
+      return;
+    }
+    const { days, hours, minutes, seconds } = convertMs(deltaTime);
+    refs.days.textContent = addLeadingZero(days);
+    refs.hours.textContent = addLeadingZero(hours);
+    refs.minutes.textContent = addLeadingZero(minutes);
+    refs.seconds.textContent = addLeadingZero(seconds);
   }, 1000);
-};
+}
+
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
