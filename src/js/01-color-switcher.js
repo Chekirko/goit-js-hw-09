@@ -11,6 +11,7 @@ let btnStatus = true;
 let intervalId;
 function onStartBtnClick() {
   if (btnStatus) {
+    refs.startBtn.setAttribute('disabled', true);
     console.log('start');
     btnStatus = false;
     intervalId = setInterval(() => {
@@ -23,6 +24,7 @@ function onStopBtnClick() {
   console.log('stop');
   clearInterval(intervalId);
   btnStatus = true;
+  refs.startBtn.removeAttribute('disabled');
 }
 
 function getRandomHexColor() {
